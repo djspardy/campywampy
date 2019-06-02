@@ -1,0 +1,28 @@
+<% include ../partials/header %>
+
+
+<div class="container">
+    <div class="row mx-auto">
+        <h1 class="display-4">Leave a comment on <%= campground.name %></h1>
+    </div>
+    <div class="row mx-auto" style="margin: 25px">
+        <form action="/campgrounds/<%= campground._id %>/comments" method="POST">
+          <div class="form-group">
+            <label for="author">Your Name</label>
+            <input class="form-control" id="author" name="comment[author]" placeholder="Enter your name">
+            <small id="yourNameHelp" class="form-text text-muted">People will be able to see your name when you post.</small>
+          </div>
+          <div class="form-group">
+            <label for="text">Comment</label>
+            <input class="form-control" id="text" placeholder="Type your comment" name = "comment[text]">
+          </div>
+          <button type="submit" class="btn btn-secondary">Submit</button>
+        </form>
+    </div>
+    <div class="row mx-auto">
+        <a href="/campgrounds/<%= campground._id %>">Go back</a>
+    </div>
+</div>
+
+
+<% include ../partials/footer %>

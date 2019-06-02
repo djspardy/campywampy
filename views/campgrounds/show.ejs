@@ -1,0 +1,53 @@
+<%include ../partials/header%>
+
+<div class = "container">
+
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">Davy Wavy</p>
+            <div class="list-group">
+                <li class="list-group-item active">Info 1</li>
+                <li class="list-group-item">Info 2</li>
+                <li class="list-group-item">Info 2</li>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="thumbnail p-0">
+                <img class="image-responsive campImage" src ="<%=campground.image%>">
+                <div class="caption-full pt-3">
+                    <h4 class="float-right text-secondary">$13/night</h4>
+                    <h4 class="float-left"><a href="http://www.google.com"><%=campground.name%></a></h4>
+                    <br style="clear:both" />
+                    <p><%=campground.description%></p>
+                </div>
+            </div>
+            <div class="card p-3 mb-4 bg-light">
+                <div class="text-left">
+                    <a class="btn btn-outline-success btn-sm" href="/campgrounds/<%= campground._id %>/comments/new">Leave a comment</a>
+                </div>
+                <hr>
+                <% campground.comments.forEach(function(comment){ %>
+                    <div class="row mb-0 pb-0">
+                        <div class="col-md-12">
+                            <strong><%= comment.author %></strong>
+                            <span class="float-right text-secondary">10 days ago</span>
+                            <p><%= comment.text %></p>
+                        </div>
+                    </div>
+                    
+                <% }); %>
+            </div>
+                
+            
+        </div>
+    </div>
+    
+    
+    
+    
+    
+    
+
+
+</div>
+<%include ../partials/footer%>

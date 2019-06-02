@@ -1,0 +1,23 @@
+body{
+    background: green;
+}
+
+/*h1{*/
+/*    color:yellow;*/
+/*}*/
+
+
+.campImage{
+    width:100%;
+}
+
+.campRow{
+    display:flex;
+    flex-wrap: wrap;
+}
+
+.newCampForm{
+    width:30%;
+    margin: 0 auto;
+    
+}
