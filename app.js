@@ -12,7 +12,8 @@ var express     = require("express"),
 
 seedDB();
 mongoose.set('useNewUrlParser', true);
-mongoose.connect("mongodb://localhost/yelp_camp");
+// mongoose.connect("mongodb://localhost/yelp_camp");
+mongoose.connect("mongodb+srv://pepperpardy:barkbork$13@cluster0-pehr3.mongodb.net/test?retryWrites=true&w=majority");
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
