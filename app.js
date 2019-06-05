@@ -3,20 +3,22 @@ var express     = require("express"),
     bodyParser  = require("body-parser"),
     mongoose    = require("mongoose"),
     passport    = require("passport"),
+    forceSsl    = require("force-ssl-heroku"),
     LocalStrategy = require("passport-local"),
     Campground  = require("./models/campground"),
     Comment     = require("./models/comment"),
     User = require("./models/user"),
     seedDB      = require("./seeds");
-    
 
-seedDB();
+
 mongoose.set('useNewUrlParser', true);
-// mongoose.connect("mongodb://localhost/yelp_camp");
-mongoose.connect("mongodb+srv://pepperpardy:barkbork$13@cluster0-pehr3.mongodb.net/test?retryWrites=true&w=majority");
+mongoose.connect(process.env.DATABASEURL);
+app.use(forceSsl);
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
+
+// seedDB();
 
 //
 app.use(require("express-session")({
@@ -39,23 +41,18 @@ app.use(function(req, res, next){
 // landing
 
 app.get("/", function(req, res){
-    console.log("Starting '/' route...");
     res.render("landing");
-    console.log("Exiting '/' route...");
 });
 
 
 // INDEX
 app.get('/campgrounds', function(req, res){
-    console.log("Starting '/campgrounds' route...");
-    console.log("User is: " + req.user);
     //Get campgrounds from DB
     Campground.find({}, function(err, campgrounds){
         if(err){console.log("/campgrounds: Could not find campground(s). Error: " + err);
         } else{
             console.log("/campgrounds: Found " + campgrounds.length + " campgrounds in db.");
             res.render("campgrounds/index", {campgrounds: campgrounds});
-            console.log("Exiting '/campgrounds' route...");
         }
     });
 });
