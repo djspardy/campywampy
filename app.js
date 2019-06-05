@@ -36,22 +36,26 @@ app.use(function(req, res, next){
 });
 
 
-// langind
+// landing
 
 app.get("/", function(req, res){
+    console.log("Starting '/' route...");
     res.render("landing");
+    console.log("Exiting '/' route...");
 });
 
 
 // INDEX
 app.get('/campgrounds', function(req, res){
-    console.log(req.user);
+    console.log("Starting '/campgrounds' route...");
+    console.log("User is: " + req.user);
     //Get campgrounds from DB
     Campground.find({}, function(err, campgrounds){
         if(err){console.log("/campgrounds: Could not find campground(s). Error: " + err);
         } else{
             console.log("/campgrounds: Found " + campgrounds.length + " campgrounds in db.");
             res.render("campgrounds/index", {campgrounds: campgrounds});
+            console.log("Exiting '/campgrounds' route...");
         }
     });
 });
