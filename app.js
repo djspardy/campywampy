@@ -12,8 +12,10 @@ var express     = require("express"),
 
 
 mongoose.set('useNewUrlParser', true);
-mongoose.connect(process.env.DATABASEURL);
-app.use(forceSsl);
+var url = process.env.DATABASEURL || "mongodb://localhost/yelp_camp"
+mongoose.connect(url);
+
+// app.use(forceSsl);
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
